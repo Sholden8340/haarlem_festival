@@ -1,6 +1,6 @@
 <nav id="navbar-hf">
     <ul>
-        <li> <img src="" alt="Haarlem Festival Logo"> </li>
+        <li id='logo'> <a href="<?php echo URLROOT . "/pages/index" ?>"><img src="../img/logo.jpg" alt="Haarlem Festival Logo"></a> </li>
         <li> <a href="<?php echo URLROOT . "/pages/index" ?>">Home</a> </li>
         <li> <a href="<?php echo URLROOT . "/jazz/home" ?>">Haarlem Jazz</a> </li>
         <li> <a href="<?php echo URLROOT . "/histories/detail" ?>">Haarlem History</a> </li>
@@ -15,9 +15,8 @@
         </li>
 
         <li>
-            <a href="<?php echo URLROOT;?>/cart/display"> <i class="bi bi-basket3-fill"></i></a>
+            <a href="<?php echo URLROOT; ?>/cart/display"> <i class="bi bi-basket3-fill"></i></a>
         </li>
-</a>
         </li>
     </ul>
 </nav>

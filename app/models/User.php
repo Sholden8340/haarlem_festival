@@ -11,7 +11,7 @@ class User
     }
 
     public function getUsers(){
-        $this->db->query("SELECT * FROM users");
+        $this->db->query("SELECT * FROM user");
 
         $result = $this->db->resultSet();
 
@@ -20,7 +20,7 @@ class User
     }
 
     public function  loginCheck($email,$password){
-        $this->db->query('SELECT * FROM users WHERE email = :email');
+        $this->db->query('SELECT * FROM user WHERE email = :email');
 
         //Bind
         $this->db->bind(':email',$email);
@@ -39,7 +39,7 @@ class User
 
 
     public function newCustomer($data){
-        $this->db->query('INSERT INTO users (firstname, lastname, email, password,roleID) VALUES (:firstname,:lastname,:email,:password,3)');
+        $this->db->query('INSERT INTO user (firstname, lastname, email, password,roleID) VALUES (:firstname,:lastname,:email,:password,3)');
 
         $this->db->bind(':firstname',$data['firstname']);
         $this->db->bind(':lastname',$data['lastname']);
@@ -59,7 +59,7 @@ class User
     // if there is a match
     public function findUserByEmail($email){
         //Prepared Statement
-        $this->db->query('SELECT * FROM users WHERE email = :email');
+        $this->db->query('SELECT * FROM user WHERE email = :email');
 
         //Bind param with variable
         $this->db->bind(':email',$email);

@@ -68,20 +68,26 @@ class JazzModel
     private function formatJazzEvent($event): string
     {
 
-        $formattedEvent = "<section class='event jazz-event'>" .
-            "<h3>" . $event->artist->name . "</h3>" .
-            "<span class='time'>" . $event->startDateTime->format("H:i") .
-            " - " . $event->endDateTime->format("H:i") . "</span>" . "</section>";
+        $formattedEvent = 
+        "<section class='event jazz-event table__cell'>
+            <h3>{$event->artist->name}</h3>
+            <span class='time'>
+                {$event->startDateTime->format("H:i")} -  {$event->endDateTime->format("H:i")}
+            </span>
+        </section>";
 
         return $formattedEvent;
     }
 
     private function formatJazzHeader($event)
     {
-        $formattedHeader = "<section class='jazz-event-header'>" .
-            "<h3>" . $event->location->name . "</h3>" .
-            "<span class='date'>" . $event->startDateTime->format("d-m") . "</span></section>";
-        "<span class='location'>" . $event->location->description . "</span></section>";
+        $formattedHeader = 
+        "
+        <section class='jazz-event-header table__cell'>
+            <h3>{$event->location->name}</h3>
+            <span class='date'> {$event->startDateTime->format("d-m")}</span>
+            <span class='location'>{$event->location->description}</span>
+        </section>";
 
         return $formattedHeader;
     }

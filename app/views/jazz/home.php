@@ -5,7 +5,7 @@
     <?php //var_dump($data); 
     ?>
 
-    <section class="title-screen">
+    <section class="title-screen" id="jazz-title-screen">
         <section id="jazz-title">
             <h1>Haarlem Festival Jazz</h1>
             <h2>The Haarlem Festival brings you the best jazz acts, both local and from around the world.
