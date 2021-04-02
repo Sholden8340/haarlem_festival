@@ -70,13 +70,35 @@
 
     <section id=jazz-timetable-page>
         <section class="timetable card table" id="jazz-timetable">
+
             <?php
+
             if (isset($data['timetable'])) {
-                print_r($data['timetable'], false);
+
+                // Date
+                foreach ($data['timetable'] as $key => $event) {
+
+                    $date = new DateTime($key);
+                    echo "<h4>". date_format($date, "l d/m") ."</h4>";
+                    // Location
+                    foreach ($event as $key => $location) {
+
+                        echo "<section class='table__row jazz-table-row'>";
+
+                        // event
+                        foreach ($location as $key => $value) {
+                            echo $value;
+                        }
+                        echo "</section>";
+                    }
+                }
             } else {
+
                 echo "There was an error loading the timetable";
             }
+
             ?>
+
         </section>
     </section>
 

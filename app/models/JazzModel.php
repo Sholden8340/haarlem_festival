@@ -57,6 +57,7 @@ class JazzModel
             $location = $result->location->description;
 
             if (!isset($timetable[$date][$location])) {
+
                 // Generate the timetable headers
                 $timetable[$date][$location] = array($this->formatJazzHeader($result));
             }
@@ -69,7 +70,7 @@ class JazzModel
     {
 
         $formattedEvent = 
-        "<section class='event jazz-event table__cell'>
+        "<section class='event jazz-event table__cell' onclick='alert(\"Artist Info+\")'>
             <h3>{$event->artist->name}</h3>
             <span class='time'>
                 {$event->startDateTime->format("H:i")} -  {$event->endDateTime->format("H:i")}
@@ -82,10 +83,8 @@ class JazzModel
     private function formatJazzHeader($event)
     {
         $formattedHeader = 
-        "
-        <section class='jazz-event-header table__cell'>
+        "<section class='jazz-event-header table__cell'>
             <h3>{$event->location->name}</h3>
-            <span class='date'> {$event->startDateTime->format("d-m")}</span>
             <span class='location'>{$event->location->description}</span>
         </section>";
 
@@ -98,7 +97,7 @@ class JazzModel
         JOIN event on jazz_event.event_id = event.event_id
         JOIN location on event.location_id = location.location_id
         JOIN artist on jazz_event.artist_id = artist.artist_id
-        WHERE jazz_event.event_id = 5");
+        WHERE jazz_event.event_id = :id");
 
         $this->db->bind(":id", $id);
         return $this->resultToJazzEvent($this->db->singleRow());

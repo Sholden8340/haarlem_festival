@@ -7,6 +7,11 @@ class Cart extends Controller
         $this->cartModel = $this->model('CartModel');
     }
 
+    public function index()
+    {
+        $this->display();
+    }
+
     public function display()
     {
         $data['tickets'] = $this->cartModel->displayTickets();

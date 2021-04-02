@@ -14,15 +14,15 @@ class Checkout extends Controller
 
     public function display()
     {
-        if (!isset($_SESSION['user_id']) && false) {
+        if(!isLoggedIn())
+        {
             header('location: ' . URLROOT . '/users/login');
         }
-
         $data = [
             'title' => 'Checkout',
-            'order' => $this->orderModel->getOrder()
+            'order' => $this->orderModel->displayOrder()
         ];
-        $this->view('checkout/display', $data, "");
+        $this->view('checkout/display', $data);
     }
 
     public function confirm()

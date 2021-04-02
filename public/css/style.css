@@ -271,10 +271,14 @@ a.button.transparent:active {
 }
 
 #jazz-timetable-page {
-  height: 90vh;
+  height: 100vh;
   width: 100%;
   background-color: green;
   display: inline-block;
+}
+
+h4 {
+  font-size: 16pt;
 }
 
 #jazz-timetable {
@@ -282,6 +286,9 @@ a.button.transparent:active {
   width: 80%;
   margin: 2% 9% 2% 9%;
   padding: 2em;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 #jazz-info > img {
@@ -296,7 +303,7 @@ a.button.transparent:active {
   grid-area: jtext;
 }
 
-#jazz-in-haarlem-image img{
+#jazz-in-haarlem-image img {
   grid-area: jazz;
 }
 
@@ -304,7 +311,7 @@ a.button.transparent:active {
   grid-area: gmtext;
 }
 
-#grote-markt-image img{
+#grote-markt-image img {
   grid-area: gm;
 }
 
@@ -312,7 +319,7 @@ a.button.transparent:active {
   grid-area: ptext;
 }
 
-#patronaat-image img{
+#patronaat-image img {
   grid-area: patronaat;
 }
 
@@ -321,7 +328,39 @@ a.button.transparent:active {
 }
 
 .jazz-event {
-  background-color: orange;
+  background-color: #fe8115;
+  padding: 1em;
+  text-align: center;
+  border: 1px solid black;
+  width: 100%;
+}
+
+.jazz-event:hover {
+  background-color: #c96e00;
+}
+
+.jazz-event h3,
+.jazz-event-header h3 {
+  font-size: 16pt;
+}
+
+.jazz-event-header {
+  padding: 1em;
+  display: inline-block;
+  background-color: #404040;
+  border: 1px solid black;
+  width: 100%;
+  max-width: 150px;
+  color: #fff;
+}
+
+.jazz-table-row {
+  margin: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
 }
 
 #jazz-title-screen {
@@ -335,6 +374,15 @@ a.button.transparent:active {
   bottom: 0;
   padding: 1em;
   background-color: rgba(0, 0, 0, 0.6);
+}
+
+.ticket-quantity,
+.ticket,
+.ticket-total {
+  display: inline-block;
+}
+.ticket-total {
+  text-align: right;
 }
 
 /* Login CSS */
@@ -918,4 +966,32 @@ th {
   margin: auto;
   text-align: center;
   padding: 3em;
+}
+
+.cart-row {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  width: 100%;
+  padding: 1em;
+}
+
+/* Checkout */
+
+#checkout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 80vw;
+  height: 90vh;
+}
+.form-input {
+  display: block;
+}
+#order-info {
+  background-color: #fff;
+}
+#order-info > * {
+  border: 1px solid brown;
+}
+#billing-info {
+  background-color: #fff;
 }

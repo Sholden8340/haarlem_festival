@@ -7,8 +7,19 @@ class Order
     private array $orderItems;
     private string $status;
 
-    public function __construct()
+    public function __construct(array $orderItems, int $customerId = null, string $status = null, int $orderId = null)
     {
+        $this->orderItems = $orderItems;
+
+        if ($customerId !=null) {
+            $this->customerId = $customerId;
+        }
+        if ($status !=null) {
+            $this->status = $status;
+        }
+        if ($orderId !=null) {
+            $this->orderId = $orderId;
+        }
     }
 
     public function __get($property)
@@ -25,4 +36,8 @@ class Order
         }
     }
 
+    public function addOrderItem(OrderItem $orderItem)
+    {
+        array_push($this->orderItems, $orderItem);
+    }
 }

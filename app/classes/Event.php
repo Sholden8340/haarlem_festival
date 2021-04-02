@@ -9,11 +9,12 @@ abstract class Event
     protected DateTime $startDateTime;
     protected DateTime $endDateTime;
 
-    public function __construct(int $eventId, DateTime $startDateTime, DateTime $endDateTime) 
+    public function __construct(int $eventId, DateTime $startDateTime, DateTime $endDateTime, string $category) 
     {
         $this->eventId = $eventId;
         $this->startDateTime = $startDateTime;
         $this->endDateTime = $endDateTime;
+        $this->category = $category;
     }
 
     public function __get($property)

@@ -46,9 +46,9 @@ include APPROOT . '/views/includes/navigation.php'; ?>
             </section>
 
             <aside id="events-image">
-                <img src="../img/dance_event.jpg" alt="Dance Image">
-                <img src="../img/history_event.jpg" alt="History Image">
-                <img src="../img/jazz_event.jpg" alt="Jazz Image">
+                <img src="<?php echo URLROOT?>/img/dance_event.jpg" alt="Dance Image">
+                <img src="<?php echo URLROOT?>/img/history_event.jpg" alt="History Image">
+                <img src="<?php echo URLROOT?>/img/jazz_event.jpg" alt="Jazz Image">
             </aside>
 
         </section>

@@ -35,7 +35,6 @@ class TicketModel
     private function resultToTicket($result): Ticket
     {
         $eventDB = new EventModel();
-        //die(print_r($result));
         return new Ticket($result->ticket_id, $eventDB->getEventById($result->event_id), $result->ticket_price);
     }
 }

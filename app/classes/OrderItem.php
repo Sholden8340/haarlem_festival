@@ -5,10 +5,10 @@ class OrderItem
     private Ticket $ticket;
     private int $quantity;
 
-    public function __construct(Ticket $ticket, int $quantity) 
+    public function __construct(Ticket $t, int $q) 
     {
-        $this->$ticket = $ticket;
-        $this->$quantity = $quantity;
+        $this->ticket = $t;
+        $this->quantity = $q;
     }
 
     public function __get($property)
