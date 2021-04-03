@@ -31,8 +31,16 @@ class CartModel
         return $tickets;
     }
 
-    public function addToCart(int $ticketId, int $quantity): void
+    public function addToCart(int $ticketId): void
     {
+        $quantity = null;
+        if (isset($_POST['quantity'])) {
+            $quantity = $_POST['quantity'];
+        }
+        else{
+            die();
+        }
+
         $t = new TicketModel;
         $ticket = $t->getTicketById($ticketId);
         $orderItem = null;

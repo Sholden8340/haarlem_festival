@@ -13,13 +13,18 @@ class Jazz extends Controller
         $this->home();
     }
 
-    public function home()
+    public function home(int $eventId = null)
     {
         $timetable = $this->jazzModel->getTimetable();
         $data = [
             'title' => 'Jazz Home',
             'timetable' =>$timetable
         ];
-        $this->view('jazz/home', $data, "");
+
+        if ($eventId != null) {
+            $data['ticket'] = $this->jazzModel->getJazzTicketById($eventId);
+        }
+
+        $this->view('jazz/home', $data);
     }
 }

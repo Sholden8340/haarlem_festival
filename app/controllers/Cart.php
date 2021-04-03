@@ -23,9 +23,9 @@ class Cart extends Controller
         $this->view("cart/checkout");
     }
 
-    public function add(int $ticket_id, int $quantity)
+    public function add(int $ticket_id)
     {
-        $this->cartModel->addToCart($ticket_id, $quantity);
+        $this->cartModel->addToCart($ticket_id);
         header('location: ' . URLROOT . '/cart/display');
     }
 

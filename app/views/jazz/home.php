@@ -2,9 +2,6 @@
 <?php include APPROOT . '/views/includes/navigation.php'; ?>
 
 <main id="home">
-    <?php //var_dump($data); 
-    ?>
-
     <section class="title-screen" id="jazz-title-screen">
         <section id="jazz-title">
             <h1>Haarlem Festival Jazz</h1>
@@ -18,7 +15,7 @@
     <section id="jazz-info-page">
         <section id="jazz-info" class="card">
 
-            <img src="../img/jazz_in_haarlem.jpg" alt="Haarlem festival jazz stage" id="jazz-in-haarlem-image">
+            <img src="<?php echo URLROOT?>/img/jazz_in_haarlem.jpg" alt="Haarlem festival jazz stage" id="jazz-in-haarlem-image">
             <section id="jazz-in-haarlem">
                 <h3>Jazz In Haarlem</h3>
                 <p>
@@ -30,7 +27,7 @@
                 </p>
             </section>
 
-            <img src="../img/patronaat.jpg" alt="Patronaat" id="patronaat-image">
+            <img src="<?php echo URLROOT?>/img/patronaat.jpg" alt="Patronaat" id="patronaat-image">
             <section id="patronaat">
 
                 <h3>Patronaat</h3>
@@ -44,7 +41,7 @@
                 </p>
             </section>
 
-            <img src="../img/grote_markt.jpg" alt="Grote Markt" id="grote-markt-image">
+            <img src="<?php echo URLROOT?>/img/grote_markt.jpg" alt="Grote Markt" id="grote-markt-image">
             <section id="grote-markt">
 
                 <h3>Grote Markt</h3>
@@ -61,16 +58,22 @@
         </section>
 
         <aside id="jazz-artists">
-            <img src="../img/placeholder.png" alt="Dance Image">
-            <img src="../img/placeholder.png" alt="History Image">
-            <img src="../img/placeholder.png" alt="Jazz Image">
+            <img src="<?php echo URLROOT?>/img/placeholder.png" alt="Dance Image">
+            <img src="<?php echo URLROOT?>/img/placeholder.png" alt="History Image">
+            <img src="<?php echo URLROOT?>/img/placeholder.png" alt="Jazz Image">
         </aside>
 
     </section>
 
     <section id=jazz-timetable-page>
-        <section class="timetable card table" id="jazz-timetable">
+        <?php
 
+        if (isset($data['ticket'])) {
+            include APPROOT . '/views/includes/addTicketOverlay.php';
+        }
+
+        ?>
+        <section class="timetable card table" id="jazz-timetable">
             <?php
 
             if (isset($data['timetable'])) {
@@ -79,7 +82,7 @@
                 foreach ($data['timetable'] as $key => $event) {
 
                     $date = new DateTime($key);
-                    echo "<h4>". date_format($date, "l d/m") ."</h4>";
+                    echo "<h4>" . date_format($date, "l d/m") . "</h4>";
                     // Location
                     foreach ($event as $key => $location) {
 
@@ -96,9 +99,7 @@
 
                 echo "There was an error loading the timetable";
             }
-
             ?>
-
         </section>
     </section>
 
