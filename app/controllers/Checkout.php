@@ -20,14 +20,29 @@ class Checkout extends Controller
         }
         $data = [
             'title' => 'Checkout',
-            'order' => $this->orderModel->displayOrder()
+            'tickets' => $this->orderModel->displayOrder(),
+            'order' => $this->orderModel->retrieveOrderFromSession()
         ];
         $this->view('checkout/display', $data);
     }
 
     public function confirm()
     {
-        
+        $data = [
+            'title' => 'Checkout',
+            'order' => $this->orderModel->retrieveOrderFromSession()
+        ];
+
+        $this->orderModel->confirmOrder();
+    }
+
+    public function viewOrder()
+    {
+        $data = [
+            'title' => 'Checkout',
+            'order' => $this->orderModel->retrieveOrderFromSession()
+        ];
+        $this->view('checkout/confirm', $data);
     }
 
 }

@@ -1,4 +1,10 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 //Require the libraries from the folders
 require_once 'libraries/Core.php';
 require_once 'libraries/Controller.php';
@@ -13,7 +19,7 @@ spl_autoload_register(function ($classname) {
 });
 
 // Require Payment API
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 Session::start();
 Session::set('userID', 1); // Login doesn't work

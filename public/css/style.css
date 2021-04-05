@@ -138,23 +138,23 @@ a.button.transparent:active {
   outline: none;
 }
 
-a.button.regular {
-  background-color: #FFF;
-  color: #C06832;
-  border: 2px solid #C06832;
+a.button.regular, input.button.regular {
+  background-color: #fff;
+  color: #c06832;
+  border: 2px solid #c06832;
   padding: 1em;
   font-weight: 700;
 }
 
-a.button.regular:hover {
-  background-color: #EEE;
+a.button.regular:hover, input.button.regular:hover {
+  background-color: #eee;
   background-repeat: no-repeat;
 }
 
-a.button.regular:active {
-  background-color: #C06832;
+a.button.regular:active, input.button.regular:active {
+  background-color: #c06832;
   background-repeat: no-repeat;
-  color: #FFF;
+  color: #fff;
   outline: none;
 }
 
@@ -353,7 +353,7 @@ h4 {
   border: 1px solid black;
   width: 100%;
 }
-.jazz-event a{
+.jazz-event a {
   color: #404040;
   text-decoration: none;
 }
@@ -1003,23 +1003,29 @@ th {
   margin: 1px;
 }
 
-#cart-buttons > *{
+#cart-buttons > * {
   padding: 1em;
 }
 
 /* Checkout */
 
 #checkout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   width: 80vw;
-  height: 90vh;
+  height: 80vh;
+  margin: auto;
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1em;
 }
+
 .form-input {
   display: block;
+  padding: 1em;
 }
 #order-info {
   background-color: #fff;
+  padding: 1em;
 }
 #order-info > * {
   border: 1px solid brown;
@@ -1027,10 +1033,23 @@ th {
 #billing-info {
   background-color: #fff;
 }
+#checkout-total{
+  border: none;
+}
+#checkout-total > *{
+  display: block;
+}
+#checkout-total * > *{
+  display: inline-block;
+}
+#checkout-total * *:nth-child(2){
+  text-align: right;
+  float: right
+}
 
 /* Add ticket overlay */
 
-#overlay-background{
+#overlay-background {
   position: fixed;
   bottom: 0px;
   height: 100vh;
@@ -1061,12 +1080,12 @@ th {
   display: grid;
   grid-template-columns: 1fr 3fr;
 }
-#event-social-overlay{
+#event-social-overlay {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
-#event-social-overlay>a{
+#event-social-overlay > a {
   font-size: 16pt;
   padding: 0.2em;
 }
@@ -1144,7 +1163,7 @@ span#ticket-add-buttons-overlay {
   grid-template-columns: 1fr 1fr;
 }
 
-img#artist-image{
+img#artist-image {
   border-radius: 50%;
   width: 200px;
   height: 200px;

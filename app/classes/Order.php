@@ -50,4 +50,15 @@ class Order
     {
         $this->orderItems[$key]->quantity = $quantity;
     }
+
+    public function getTotal() : float
+    {
+        $total = 0;
+
+        foreach ($this->orderItems as $key => $value) {
+            $total += $value->quantity * $value->ticket->price;
+        }
+
+        return $total;
+    }
 }

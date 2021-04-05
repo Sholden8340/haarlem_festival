@@ -5,9 +5,9 @@
 
     <section id='checkout'>
         <section id='payment-info'>
-            <form action="<?php echo URLROOT?>/checkout/confirm" method="post">
+            <form action="<?php echo URLROOT ?>/checkout/confirm" method="post" id="billing-info">
 
-                <section id='billing-info'>
+                <section id='user-info'>
                     <span class='form-input'>
                         <label for="fname">First name:</label>
                         <input type="text" id="fname" name="fname">
@@ -42,7 +42,7 @@
                 </section>
 
                 <section id='payment-method'>
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Pay" class='button regular'>
                 </section>
 
             </form>
@@ -50,7 +50,25 @@
 
         </section>
         <section id='order-info'>
-            <?php var_dump($data['order']); ?>
+            <?php
+            foreach ($data['tickets'] as $key => $value) {
+                echo $value;
+            }
+            ?>
+            <section id='checkout-total'>
+                <span>
+                    <h3>Sub Total</h3>
+                    <h3>&euro;<?php echo number_format($data['order']->getTotal() * .79, 2); ?></h3>
+                </span>
+                <span>
+                    <h3>VAT @ 21%</h3>
+                    <h3>&euro;<?php echo number_format($data['order']->getTotal() * .21, 2); ?></h3>
+                </span>
+                <span>
+                    <h3>Total</h3>
+                    <h3>&euro;<?php echo number_format($data['order']->getTotal(), 2); ?></h3>
+                </span>
+            </section>
         </section>
 
     </section>
