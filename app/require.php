@@ -22,7 +22,7 @@ spl_autoload_register(function ($classname) {
 require_once '../vendor/autoload.php';
 
 Session::start();
-Session::set('userID', 1); // Login doesn't work
+Session::set('userId', 1); // Login doesn't work
 
 //Instantiate core class
 $init = new Core();

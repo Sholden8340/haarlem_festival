@@ -46,19 +46,49 @@ class OrderModel
             "redirectUrl" => URLROOT . "/checkout/viewOrder/"
         ]);
 
-        try{
-            header("Location: " . $payment->getCheckoutUrl(), true, 303);
-        }catch (\Mollie\Api\Exceptions\ApiException $e) {
-            echo "API call failed: " . htmlspecialchars($e->getMessage());
-        }
+        // try{
+        //     header("Location: " . $payment->getCheckoutUrl(), true, 303);
+        // }catch (\Mollie\Api\Exceptions\ApiException $e) {
+        //     echo "API call failed: " . htmlspecialchars($e->getMessage());
+        // }
 
-        
+        $this->storeOrder($order);
+        header("Location: " . URLROOT . "/checkout/viewOrder/");
     }
 
-    private function storeOrderItem(OrderItem $orderItem)
+    private function storeOrder(Order $order)
     {
-        $ticket_id = $orderItem->ticket->ticketId;
-        $quantity = $orderItem->quantity;
+        $order = $this->retrieveOrderFromSession();
+        $userId = $_SESSION['userId'];
+        $order_date = date('Y-m-d h:i:s');
+
+        $this->db->query('INSERT INTO `order` (customer_id, order_date, total) VALUES (:customer_id,:order_date,:total)');
+        $this->db->bind(':customer_id', $userId);
+        $this->db->bind(':order_date', $order_date);
+        $this->db->bind(':total', $order->getTotal());
+        $this->db->execute();
+
+        $order->orderId = $this->db->lastInsertId();
+
+        $this->storeOrderItems($order);
+        $this->storeOrderInSession($order);
+    }
+
+    private function storeOrderItems(Order $order)
+    {
+        $orderId = $order->orderId;
+        foreach ($order->orderItems as $key => $orderItem) 
+        {
+            $ticketId = $orderItem->ticket->ticketId;
+            $quantity = $orderItem->quantity;
+
+            $this->db->query('INSERT INTO `order_item` (order_id, ticket_id, quantity) VALUES (:order_id,:ticket_id,:quantity)');
+            $this->db->bind(':order_id', $orderId);
+            $this->db->bind(':ticket_id', $ticketId);
+            $this->db->bind(':quantity', $quantity);
+
+            $this->db->execute();
+        }
     }
 
     public function displayOrder()
