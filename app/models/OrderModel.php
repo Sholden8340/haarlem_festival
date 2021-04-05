@@ -13,6 +13,7 @@ class OrderModel
 
     public function storeOrderInSession($order)
     {
+        unset($_SESSION['cart']);
         $_SESSION['cart'] = serialize($order);
     }
 

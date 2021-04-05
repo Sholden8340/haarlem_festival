@@ -40,4 +40,14 @@ class Order
     {
         array_push($this->orderItems, $orderItem);
     }
+
+    public function removeOrderItem(int $key)
+    {
+        unset($this->orderItems[$key]);
+        $this->orderItems = array_values($this->orderItems); // re 0 index array
+    }
+    public function updateOrderItemQuantity(int $key, int $quantity)
+    {
+        $this->orderItems[$key]->quantity = $quantity;
+    }
 }

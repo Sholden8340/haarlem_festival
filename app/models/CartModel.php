@@ -8,6 +8,7 @@ class CartModel
 {
     private Order $order;
     private OrderModel $orderModel;
+    private int $count = 0;
 
     public function __construct()
     {
@@ -92,10 +93,24 @@ class CartModel
     public function removeFromCart(int $id)
     {
         foreach ($this->order->orderItems as $key => $orderItem) {
-            if ($orderItem->ticket->ticketId == $id) {
-                unset($this->order->orderItems[$key]);
-                $this->OrderModel->storeOrderInSession($this->order);
+            if ($orderItem->ticket->ticketId == $id) 
+            {
+                $this->order->removeOrderItem($key);
+                $this->orderModel->storeOrderInSession($this->order);
             }
+        }
+    }
+
+    public function updateQuantity()
+    {
+        if (isset($_POST)) 
+        {
+            $quantities = array_values($_POST);
+            for ($i=0; $i < count($quantities); $i++) 
+            { 
+                $this->order->updateOrderItemQuantity($i, $quantities[$i]);
+            }
+            $this->orderModel->storeOrderInSession($this->order);
         }
     }
 
@@ -112,17 +127,19 @@ class CartModel
         $cartRow = "
         <section class='cart-row'>
             <section class='ticket'>
-                <span><h4>{$t->event->category} - {$t->event->artist->name} &euro;$t->price</h4></span>
+                <span><h4>{$t->event->category} - {$t->event->artist->name} <span class='cart-ticket-price'>&euro;$t->price</span></h4></span>
                 <span>" . $t->event->startDateTime->format("d M H:i") . " - {$t->event->location->name} {$t->event->location->description}</span>
             </section>
             <section class='ticket-quantity'>
-                <span> X $orderItem->quantity</span>
+                <input type='number' name='quantity{$this->count}' class='cart-quantity' min='1' max='10' value='$orderItem->quantity' onchange='updateCartTotal()'>
+                <a href='".URLROOT . "/cart/remove/" .$t->ticketId . "'><i class='bi bi-x'></i> Remove Item</a>
             </section>
             <section class='ticket-total'>
-                <span>&euro;" . $orderItem->quantity * $t->price . "</span>
+                <span class='cart-ticket-total'>&euro;" . $orderItem->quantity * $t->price . "</span>
             </section>
         </section>
         ";
+        $this->count++; // Bad way to update totals
         return $cartRow;
     }
 }

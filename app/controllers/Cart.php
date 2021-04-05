@@ -29,6 +29,18 @@ class Cart extends Controller
         header('location: ' . URLROOT . '/cart/display');
     }
 
+    public function remove(int $ticket_id)
+    {
+        $this->cartModel->removeFromCart($ticket_id);
+        header('location: ' . URLROOT . '/cart/display');
+    }
+
+    public function update()
+    {
+        $this->cartModel->updateQuantity();
+        header('location: ' . URLROOT . '/cart/display');
+    }
+
     public function clear(){
         $this->cartModel->clearCart();
         header('location: ' . URLROOT . '/cart/display');

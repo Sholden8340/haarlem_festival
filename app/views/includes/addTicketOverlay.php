@@ -1,9 +1,12 @@
-<?php 
+<?php
 $ticket = $data['ticket'];
 ?>
+<script>
 
-<section id='overlay-background' onclick="this.style.display = 'none'">
-    <form action="<?php echo URLROOT . "/cart/add/$ticket->ticketId";?>" method="post" id='add-ticket-overlay' class='card'>
+</script>
+
+<section id='overlay-background'">
+    <form action="<?php echo URLROOT . "/cart/add/$ticket->ticketId"; ?>" method="post" id='add-ticket-overlay' class='card'>
 
         <section id='event-info-overlay'>
 
@@ -18,9 +21,9 @@ $ticket = $data['ticket'];
 
             </section>
             <section id='event-details-overlay'>
-                <h2><?php echo $ticket->event->artist->name;?></h2>
+                <h2><?php echo $ticket->event->artist->name; ?></h2>
                 <p>
-                    <?php echo $ticket->event->artist->description;?>
+                    <?php echo $ticket->event->artist->description; ?>
                 </p>
             </section>
 
@@ -37,10 +40,13 @@ $ticket = $data['ticket'];
             </span>
             <span>
                 <section id='ticket-overlay'>
-                    <?php echo $ticket->event->artist->description;?>
+                    <?php echo "<h3>" . $ticket->event->artist->name; "</h4>" ?>
+                    <p>
+                        <?php echo $ticket->event->startDateTime->format("d M H:i") . " - " . $ticket->event->location->name . " " . $ticket->event->location->description; ?>
+                    </p>
                 </section>
-                <span><?php echo $ticket->price;?></span>
-                <input type="number" name="quantity" id="quantity" min="1" max="10" value="1">
+                <span id='ticket-price-overlay'><?php echo $ticket->price; ?></span>
+                <input type="number" name="quantity" id="quantity" min="1" max="10" value="1" onchange="updateTotals()">
 
             </span>
             <span id='weekend-pass-overlay'>
@@ -51,19 +57,20 @@ $ticket = $data['ticket'];
 
         <section id='ticket-total-overlay'>
             <h2>Total</h2>
-            <h2>&euro;99.99</h2>
+            <h2 id='big-total'></script>
+            </h2>
             <section id='ticket-total-breakdown-overlay'>
                 <span>
                     <h4>Sub Total</h4>
-                    <p>&euro;22.22</p>
+                    <p id='sub-total'></p>
                 </span>
                 <span>
                     <h4>VAT @ 21%</h4>
-                    <p>&euro;33.33</p>
+                    <p id='vat-total'></p>
                 </span>
                 <span>
                     <h4>Total</h4>
-                    <p>&euro;44.44</p>
+                    <p id='full-total'></p>
                 </span>
                 <span id='ticket-add-buttons-overlay'>
                     <button type="submit">Add To Cart</button>

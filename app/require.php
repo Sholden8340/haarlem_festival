@@ -12,6 +12,9 @@ spl_autoload_register(function ($classname) {
     require_once 'classes/' . $classname . '.php';
 });
 
+// Require Payment API
+require_once 'vendor/autoload.php';
+
 Session::start();
 Session::set('userID', 1); // Login doesn't work
 

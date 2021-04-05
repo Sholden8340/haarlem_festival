@@ -1,7 +1,7 @@
 <?php include APPROOT . '/views/includes/header.php'; ?>
 <?php include APPROOT . '/views/includes/navigation.php'; ?>
 
-<main class='container'>
+<main>
 
     <section id='checkout'>
         <section id='payment-info'>

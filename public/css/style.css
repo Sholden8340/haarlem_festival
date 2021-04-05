@@ -138,6 +138,26 @@ a.button.transparent:active {
   outline: none;
 }
 
+a.button.regular {
+  background-color: #FFF;
+  color: #C06832;
+  border: 2px solid #C06832;
+  padding: 1em;
+  font-weight: 700;
+}
+
+a.button.regular:hover {
+  background-color: #EEE;
+  background-repeat: no-repeat;
+}
+
+a.button.regular:active {
+  background-color: #C06832;
+  background-repeat: no-repeat;
+  color: #FFF;
+  outline: none;
+}
+
 .btn-login {
   text-decoration: none;
   background-color: #fff;
@@ -273,7 +293,6 @@ a.button.transparent:active {
 #jazz-timetable-page {
   height: 100vh;
   width: 100%;
-  background-color: green;
   display: inline-block;
 }
 
@@ -979,6 +998,12 @@ th {
   display: grid;
   grid-template-columns: 3fr 1fr 1fr;
   width: 100%;
+  padding: 1em;
+  border: 1px solid #707070;
+  margin: 1px;
+}
+
+#cart-buttons > *{
   padding: 1em;
 }
 
