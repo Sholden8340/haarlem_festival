@@ -1162,3 +1162,64 @@ img#artist-image {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* Order Confirm */
+#order-confirm-container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 1em;
+  width: 80vw;
+  margin: auto;
+}
+#order-confirm-page {
+  margin-top: 1em;
+  background-color: #fff;
+  height: 80vh;
+  border: 2px solid #bf6832;
+}
+
+#order-confirm-info {
+  margin-top: 1em;
+  background-color: #fff;
+  height: 80vh;
+  border: 2px solid #bf6832;
+}
+
+#order-tickets {
+  width: 70%;
+  margin: auto;
+}
+
+#order-tickets > .cart-row {
+  margin-bottom: 1em;
+}
+
+#order-header {
+  background-color: #bf6832;
+  color: #404040;
+}
+#order-header > * {
+  margin: auto;
+  text-align: center;
+  color: #404040;
+}
+#order-confirm-info{
+  padding: 1em;
+}
+#order-confirm-info > span{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#order-confirm-info > h3{
+  text-align: center;
+  margin-top: 1em;
+}
+#order-confirm-info > span > *{
+  display: inline-block;
+}
+
+#order-confirm-info > span > *:nth-child(2)
+{
+  text-align: right;
+}

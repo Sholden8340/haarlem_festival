@@ -37,23 +37,24 @@ class OrderModel
         $mollie = new \Mollie\Api\MollieApiClient();
         $mollie->setApiKey("test_Ds3fz4U9vNKxzCfVvVHJT2sgW5ECD8");
 
+        $this->storeOrder($order);
+        $order = $this->retrieveOrderFromSession();
+
         $payment = $mollie->payments->create([
             "amount" => [
                 "currency" => "EUR",
                 "value" => number_format($order->getTotal(), 2)
             ],
-            "description" => "My first API payment",
+            "description" => "Haarlem Festival Order Number " . $order->orderId,
             "redirectUrl" => URLROOT . "/checkout/viewOrder/"
         ]);
 
-        // try{
-        //     header("Location: " . $payment->getCheckoutUrl(), true, 303);
-        // }catch (\Mollie\Api\Exceptions\ApiException $e) {
-        //     echo "API call failed: " . htmlspecialchars($e->getMessage());
-        // }
+        try{
+            header("Location: " . $payment->getCheckoutUrl(), true, 303);
+        }catch (\Mollie\Api\Exceptions\ApiException $e) {
+            echo "API call failed: " . htmlspecialchars($e->getMessage());
+        }
 
-        $this->storeOrder($order);
-        header("Location: " . URLROOT . "/checkout/viewOrder/");
     }
 
     private function storeOrder(Order $order)
@@ -123,5 +124,20 @@ class OrderModel
         ";
 
         return $cartRow;
+    }
+
+    public function isOrderPaid() : bool
+    {
+        $mollie = new \Mollie\Api\MollieApiClient();
+        $mollie->setApiKey("test_Ds3fz4U9vNKxzCfVvVHJT2sgW5ECD8");
+        $payment = $mollie->payments->get($_POST["id"]);
+
+        if($payment->isPaid())
+        {
+            $this->db->query('UPDATE `order_item` SET `status` = "paid"');
+            $this->db->execute();
+            unset($_SESSION['cart']);
+        }
+        return $payment->isPaid();
     }
 }

@@ -14,8 +14,7 @@ class Checkout extends Controller
 
     public function display()
     {
-        if(!isLoggedIn())
-        {
+        if (!isLoggedIn()) {
             header('location: ' . URLROOT . '/users/login');
         }
         $data = [
@@ -37,12 +36,12 @@ class Checkout extends Controller
     }
 
     public function viewOrder()
-    {
+    {    
         $data = [
             'title' => 'Checkout',
-            'order' => $this->orderModel->retrieveOrderFromSession()
+            'order' => $this->orderModel->retrieveOrderFromSession(),
+            'tickets' => $this->orderModel->displayOrder(),
         ];
         $this->view('checkout/confirm', $data);
     }
-
 }

@@ -5,7 +5,7 @@ class Order
     private int $orderId;
     private int $customerId;
     private array $orderItems;
-    private string $status;
+    private string $status = 'pending';
 
     public function __construct(array $orderItems, int $customerId = null, string $status = null, int $orderId = null)
     {
